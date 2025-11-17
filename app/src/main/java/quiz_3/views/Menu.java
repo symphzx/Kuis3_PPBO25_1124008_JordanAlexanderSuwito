@@ -1,12 +1,12 @@
 package quiz_3.views;
 
-import quiz_3.controllers.StatisticList;
 import quiz_3.models.EmptyListException;
 import quiz_3.models.InvalidInputException;
+import quiz_3.models.StatisticList;
 import quiz_3.utils.CLIUtil;
 
 public class Menu {
-    private StatisticList statisticList;
+    private StatisticList<Number> statisticList;
 
     public Menu(){
         statisticList = new StatisticList<>();
@@ -32,6 +32,12 @@ public class Menu {
                 case 5:
                     System.out.println(statisticList.getMedian());
                     break;
+                case 6:
+                String hasil = "";
+                    for (Number result : statisticList.getStatisticList()) {
+                        hasil += result.doubleValue() + " ";
+                    }
+                    break;
                 case 0:
                     return;
             }
@@ -52,7 +58,6 @@ public class Menu {
     }
 
     private void handleAddAngka() throws InvalidInputException{
-        double number = CLIUtil.askForDouble("  Masukkan Angka: ");
-        statisticList.add(number);
+        statisticList.add(CLIUtil.askForNumber("    Masukkan Angka: "));
     }
 }

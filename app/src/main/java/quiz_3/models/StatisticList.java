@@ -1,18 +1,15 @@
-package quiz_3.controllers;
+package quiz_3.models;
 
 import java.util.ArrayList;
-import java.util.Comparator;
 import java.util.List;
 
-import quiz_3.models.EmptyListException;
+import quiz_3.utils.ListUtil;
 
 public class StatisticList<T extends Number> {
     private List<T> listUtil;
-    private List<T> sortedList;
 
     public StatisticList(){
         listUtil = new ArrayList<>();
-        sortedList = new ArrayList<>(listUtil);
     }
 
     public void add(T value){
@@ -57,6 +54,7 @@ public class StatisticList<T extends Number> {
     }
 
     public double getMedian() throws EmptyListException {
+        List<T> sortedList = ListUtil.getSortedList(listUtil);
         if (sortedList.isEmpty()){
             throw new EmptyListException("List Still Empty");
         }
@@ -68,6 +66,7 @@ public class StatisticList<T extends Number> {
     }
 
     public List<T> getStatisticList(){
-        return this.sortedList;
+        List<T> sortedList = ListUtil.getSortedList(listUtil);
+        return sortedList;
     }
 }

@@ -24,14 +24,14 @@ public class CLIUtil {
         return scanner.nextInt();
     }
 
-    public static double askForDouble(String message) throws InvalidInputException {
+    public static Number askForNumber(String message) throws InvalidInputException {
         getString();
         String input = askForString(message);
-        Double inputDouble = Double.parseDouble(input);
-        if (input == null) {
+        try{
+            return Double.parseDouble(input);
+        } catch (NumberFormatException e) {
             throw new InvalidInputException("Input Not Valid!");
         }
-        return inputDouble;
     }
 
     public static String askForString(String message) {
