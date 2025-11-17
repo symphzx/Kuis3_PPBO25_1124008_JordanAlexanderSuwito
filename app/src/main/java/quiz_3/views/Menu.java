@@ -37,6 +37,7 @@ public class Menu {
                     for (Number result : statisticList.getStatisticList()) {
                         hasil += result.doubleValue() + " ";
                     }
+                    System.out.println(hasil);
                     break;
                 case 0:
                     return;
